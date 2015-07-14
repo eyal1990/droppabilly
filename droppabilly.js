@@ -15,8 +15,17 @@
         },
         getPositions = function(el) {
             var pos = offset(el),
-            width = el.offsetWidth,
-            height = el.offsetHeight;
+			var width;
+			var height;
+			
+			if (el instanceof SVGElement){
+				width = +el.getAttribute("width");
+				height = +el.getAttribute("height");
+			}
+			else{
+				width = el.offsetWidth,
+				height = el.offsetHeight;
+			}
             return [ [ pos.left, pos.left + width ], [ pos.top, pos.top + height ] ];
         },
         comparePositions = function(p1, p2) {
